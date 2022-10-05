@@ -1,0 +1,64 @@
+{
+  "name": "lamtranb/laravel-modules-language",
+  "description": "Laravel Module Language",
+  "keywords": [
+    "modules",
+    "laravel",
+    "lamtranb",
+    "module",
+    "language"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Lam Tran Bao",
+      "email": "tranbaolam6693@gmail.com",
+      "homepage": "https://github.com/lamtranb",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=8.0",
+    "ext-json": "*",
+    "nwidart/laravel-modules": "^8.0",
+    "spatie/laravel-translatable": "^4.6"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^8.5",
+    "mockery/mockery": "~1.0",
+    "orchestra/testbench": "^6.2",
+    "friendsofphp/php-cs-fixer": "^2.16",
+    "laravel/framework": "^8.0",
+    "phpstan/phpstan": "^0.12.14"
+  },
+  "autoload": {
+    "psr-4": {
+      "Nwidart\\Modules\\Language\\": "src"
+    },
+    "files": [
+      "src/helpers.php"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Nwidart\\Modules\\Language\\Tests\\": "tests"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Nwidart\\Modules\\Language\\LanguageServiceProvider"
+      ]
+    },
+    "branch-alias": {
+      "dev-master": "8.0-dev"
+    }
+  },
+  "scripts": {
+    "test": "vendor/bin/phpunit",
+    "test-coverage": "vendor/bin/phpunit --debug --coverage-html coverage",
+    "pcf": "vendor/bin/php-cs-fixer fix --verbose"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
