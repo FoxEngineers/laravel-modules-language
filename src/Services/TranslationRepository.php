@@ -11,7 +11,8 @@ use Nwidart\Modules\Language\Models\Phrase;
 use RecursiveArrayIterator;
 use RecursiveIteratorIterator;
 
-class TranslationRepository implements TranslationInterface {
+class TranslationRepository implements TranslationInterface
+{
     /**
      * @var Translator - this translator has "database loader".
      */
@@ -45,7 +46,7 @@ class TranslationRepository implements TranslationInterface {
     }
 
     /**
-     * @param  string[]      $filters
+     * @param string[] $filters
      * @return array<string, string>
      */
     protected function getNamespaces($filters = []): array
@@ -75,10 +76,11 @@ class TranslationRepository implements TranslationInterface {
     }
 
     /**
-     * @param  string   $location
+     * @param string $location
      * @return string[]
      */
-    protected function getFoldersFromLocation(string $location): array {
+    protected function getFoldersFromLocation(string $location): array
+    {
         $languageFolders = [];
 
         if (!File::isDirectory($location)) {
@@ -96,7 +98,7 @@ class TranslationRepository implements TranslationInterface {
     }
 
     /**
-     * @param  string[]      $filters
+     * @param string[] $filters
      * @return array<string, mixed>
      *
      * @SuppressWarnings(PHPMD.CyclomaticComplexity)
@@ -166,8 +168,8 @@ class TranslationRepository implements TranslationInterface {
                             $languages[$namespace][$group][$key] = [];
                         }
                         $languages[$namespace][$group][$key] = array_merge(
-                                $languages[$namespace][$group][$key],
-                                [$locale => $name]
+                            $languages[$namespace][$group][$key],
+                            [$locale => $name]
                         );
                     }
                 }
@@ -219,9 +221,9 @@ class TranslationRepository implements TranslationInterface {
 
     public function cleanUp(string $group): bool
     {
-        return (bool) Phrase::query()
-                ->where('group', '=', $group)
-                ->delete();
+        return (bool)Phrase::query()
+            ->where('group', '=', $group)
+            ->delete();
     }
 
     /**

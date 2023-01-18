@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLanguageTable extends Migration
+class CreateLanguagesTable extends Migration
 {
     protected string $tableName = 'languages';
     protected string $tableNamePhrase = 'phrases';

@@ -7,8 +7,8 @@ namespace Nwidart\Modules\Language\Traits;
  *
  * @property string $primaryKey
  */
-trait EntityTrait {
-
+trait EntityTrait
+{
     public function entityId(): int
     {
         return $this->{$this->primaryKey};

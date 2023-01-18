@@ -4,7 +4,8 @@ namespace Nwidart\Modules\Language\Contracts;
 
 use Nwidart\Modules\Language\Services\Translator;
 
-interface TranslationInterface {
+interface TranslationInterface
+{
     /**
      * Get Translator.
      *

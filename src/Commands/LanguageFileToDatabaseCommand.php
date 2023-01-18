@@ -6,7 +6,8 @@ use Nwidart\Modules\Language\Contracts\TranslationInterface;
 use Nwidart\Modules\Language\Services\TranslationRepository;
 use Illuminate\Console\Command;
 
-class LanguageFileToDatabaseCommand extends Command {
+class LanguageFileToDatabaseCommand extends Command
+{
     /**
      * The name and signature of the console command.
      *
@@ -26,9 +27,11 @@ class LanguageFileToDatabaseCommand extends Command {
      *
      * @return int
      */
-    public function handle(): int {
+    public function handle(): int
+    {
         $this->callSilent('cache:clear');
         $filters = $this->option('filters');
+
         /** @var TranslationRepository $translator */
         $translator = resolve(TranslationInterface::class);
         $translator->migrateToDatabase($filters);

@@ -4,7 +4,8 @@ namespace Nwidart\Modules\Language\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-class BootstrapServiceProvider extends ServiceProvider {
+class BootstrapServiceProvider extends ServiceProvider
+{
 
     /**
      * Booting the package.
@@ -15,7 +16,7 @@ class BootstrapServiceProvider extends ServiceProvider {
             $this->registerMigrations();
 
             $this->publishes([
-                    __DIR__ . '/../../database/migrations' => database_path('migrations'),
+                __DIR__ . '/../../database/migrations' => database_path('migrations'),
             ], 'module-language-migrations');
         }
     }

@@ -14,7 +14,8 @@ use Spatie\Translatable\HasTranslations;
  * @property string $text
  * @mixin Builder
  */
-class Phrase extends Model {
+class Phrase extends Model
+{
 
     use HasTranslations;
 
@@ -32,21 +33,22 @@ class Phrase extends Model {
      *
      * @return array
      */
-    public static function getGroup(string $group, string $locale): array {
+    public static function getGroup(string $group, string $locale): array
+    {
         return static::query()
-                ->where('group', '=', "{$group}")
-                ->get()
-                ->map(function(self $phrase) use ($locale, $group) {
-                    $key = $phrase->key;
-                    if ($group !== static::CORE_NAMESPACE) {
-                        $key = preg_replace("/{$group}\\./", '', $phrase->key, 1);
-                    }
+            ->where('group', '=', "{$group}")
+            ->get()
+            ->map(function (self $phrase) use ($locale, $group) {
+                $key = $phrase->key;
+                if ($group !== static::CORE_NAMESPACE) {
+                    $key = preg_replace("/{$group}\\./", '', $phrase->key, 1);
+                }
 
-                    $text = $phrase->translate('text', $locale);
+                $text = $phrase->translate('text', $locale);
 
-                    return compact('key', 'text');
-                })
-                ->pluck('text', 'key')
-                ->toArray();
+                return compact('key', 'text');
+            })
+            ->pluck('text', 'key')
+            ->toArray();
     }
 }

@@ -5,12 +5,13 @@ namespace Nwidart\Modules\Language;
 use Illuminate\Support\ServiceProvider;
 use Nwidart\Modules\Language\Contracts\TranslationInterface;
 use Nwidart\Modules\Language\Providers\BootstrapServiceProvider;
+use Nwidart\Modules\Language\Providers\ConsoleServiceProvider;
 use Nwidart\Modules\Language\Services\TranslationLoader;
 use Nwidart\Modules\Language\Services\TranslationRepository;
 use Nwidart\Modules\Language\Services\Translator;
 
-class LanguageServiceProvider extends ServiceProvider {
-
+class LanguageServiceProvider extends ServiceProvider
+{
     /**
      * Booting the package.
      */
@@ -25,10 +26,12 @@ class LanguageServiceProvider extends ServiceProvider {
      *
      * @return void
      */
-    public function register() {
+    public function register(): void
+    {
+        $this->registerProviders();
         $this->registerLoader();
 
-        $this->app->singleton('translator', function($app) {
+        $this->app->extend('translator', function ($service, $app) {
             $loader = $app['translation.loader'];
 
             // When registering the translator component, we'll need to set the default
@@ -36,19 +39,22 @@ class LanguageServiceProvider extends ServiceProvider {
             // configuration so we can easily get both of these values from there.
             $locale = $app['config']['app.locale'];
 
-            $trans = new Translator($loader, $locale);
+            $service = new Translator($loader, $locale);
 
-            $trans->setFallback($app['config']['app.fallback_locale']);
+            $service->setFallback($app['config']['app.fallback_locale']);
 
-            return $trans;
+            return $service;
         });
 
         $this->app->bind(TranslationInterface::class, TranslationRepository::class);
     }
 
-    protected function registerLoader() {
-        $this->app->singleton('translation.loader', function($app) {
-            return new TranslationLoader($app['files'], $app['path.lang']);
+    protected function registerLoader()
+    {
+        $this->app->extend('translation.loader', function ($service, $app) {
+            $service = new TranslationLoader($app['files'], $app['path.lang']);
+
+            return $service;
         });
     }
 
@@ -69,7 +75,15 @@ class LanguageServiceProvider extends ServiceProvider {
 
         $this->mergeConfigFrom($configPath, 'modules-language');
         $this->publishes([
-                $configPath => config_path('modules-language.php'),
+            $configPath => config_path('modules-language.php'),
         ], 'config');
+    }
+
+    /**
+     * Register providers.
+     */
+    protected function registerProviders()
+    {
+        $this->app->register(ConsoleServiceProvider::class);
     }
 }

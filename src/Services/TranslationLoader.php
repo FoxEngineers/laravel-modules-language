@@ -15,11 +15,11 @@ class TranslationLoader extends FileLoader
      * @param string $group
      * @param string $namespace
      *
-     * @return array<mixed>
+     * @return array
      */
-    public function load($locale, $group, $namespace = null)
+    public function load($locale, $group, $namespace = null): array
     {
-        $enableCache = (bool) config('translatable.cache');
+        $enableCache = (bool)config('translatable.cache');
 
         if ($enableCache) {
             return Cache::rememberForever(
