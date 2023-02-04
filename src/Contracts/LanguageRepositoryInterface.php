@@ -1,10 +1,12 @@
 <?php
+
 namespace Nwidart\Modules\Language\Contracts;
 
 use Illuminate\Support\Collection;
 use Nwidart\Modules\Language\Models\Language;
 
-interface LanguageRepositoryInterface {
+interface LanguageRepositoryInterface
+{
     /**
      * @param bool|null $active
      *

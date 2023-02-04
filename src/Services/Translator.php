@@ -10,7 +10,8 @@ use Illuminate\Translation\Translator as LaravelTranslator;
  * @property TranslationLoader $loader
  * @method TranslationLoader getLoader()
  */
-class Translator extends LaravelTranslator {
+class Translator extends LaravelTranslator
+{
     /**
      * Retrieve all language lines out the loaded file.
      * Warning: need to register namespace first.
@@ -21,7 +22,8 @@ class Translator extends LaravelTranslator {
      *
      * @return string|array|null
      */
-    public function getLines(string $namespace, string $group, string $locale): array|string|null {
+    public function getLines(string $namespace, string $group, string $locale): array|string|null
+    {
         $this->load($namespace, $group, $locale);
 
         return $this->loaded[$namespace][$group][$locale];

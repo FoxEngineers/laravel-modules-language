@@ -2,8 +2,8 @@
 
 namespace Nwidart\Modules\Language\Contracts;
 
-interface Entity {
-
+interface Entity
+{
     /**
      * @return int
      */

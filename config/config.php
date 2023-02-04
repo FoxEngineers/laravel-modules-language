@@ -3,7 +3,7 @@
 use Nwidart\Modules\Language\Commands\LanguageFileToDatabaseCommand;
 
 return [
-   'cache' => false,
+    'cache' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -16,6 +16,6 @@ return [
     |
     */
     'commands' => [
-            LanguageFileToDatabaseCommand::class,
+        LanguageFileToDatabaseCommand::class,
     ],
 ];

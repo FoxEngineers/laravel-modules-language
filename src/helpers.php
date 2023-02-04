@@ -7,9 +7,9 @@ if (!function_exists('__p')) {
     /**
      * Translate the given message.
      *
-     * @param  string                $key
-     * @param  array<string, mixed>  $replace
-     * @param  string|null           $locale
+     * @param string $key
+     * @param array<string, mixed> $replace
+     * @param string|null $locale
      *
      * @return string
      * @throws NotFoundExceptionInterface|ContainerExceptionInterface
